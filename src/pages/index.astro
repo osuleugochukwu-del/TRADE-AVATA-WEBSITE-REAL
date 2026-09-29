@@ -1,0 +1,161 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { products, courses } from '../data/site.js';
+const base = import.meta.env.BASE_URL;
+const featuredProducts = products.filter(product => product.visible && product.featured).slice(0, 3);
+const featuredCourses = courses.slice(0, 3);
+const demoPlatforms = ['MT4', 'MT5', 'cTrader', 'TradingView'];
+---
+
+<BaseLayout
+  title="Trade Avata — Your Trading Journey Starts Here."
+  description="Trade Avata provides trading technology, indicators, practical tools, applications and education that make the trading journey simpler."
+>
+  <div class="ta-site">
+    <section class="ta-hero">
+      <div class="ta-container ta-hero-grid">
+        <div class="ta-hero-copy">
+          <span class="ta-kicker"><span class="ta-status-dot"></span> Trading technology &amp; practical solutions</span>
+          <h1>Your Trading Journey <span>Starts Here.</span></h1>
+          <p>Trade Avata provides the tools, indicators, platforms and learning resources traders need to make their trading journey clearer, simpler and more organized.</p>
+          <div class="ta-actions">
+            <a class="ta-btn ta-btn-primary" href={`${base}learn/`}>Start Learning <span>→</span></a>
+            <a class="ta-btn ta-btn-secondary" href={`${base}store/`}>Explore Trade</a>
+          </div>
+          <div class="ta-hero-note"><span>One place.</span> Products, tools, learning and trading technology under one Trade Avata identity.</div>
+        </div>
+
+        <div class="ta-hero-panel">
+          <div class="ta-window-bar"><span></span><span></span><span></span><strong>Trade Avata</strong><small>Trading workspace</small></div>
+          <div class="ta-market-strip">
+            <span>XAU/USD</span><strong>2,642.10</strong><em>+1.12%</em><span>cTrader</span>
+          </div>
+          <div class="ta-chart">
+            <div class="ta-chart-grid"></div>
+            <svg viewBox="0 0 720 250" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0 198 C55 190 70 160 112 174 S170 135 210 148 S270 92 315 122 S365 82 408 103 S468 62 510 82 S565 42 606 62 S665 28 720 44" fill="none" stroke="currentColor" stroke-width="4" />
+              <path d="M0 198 C55 190 70 160 112 174 S170 135 210 148 S270 92 315 122 S365 82 408 103 S468 62 510 82 S565 42 606 62 S665 28 720 44 L720 250 L0 250 Z" fill="currentColor" opacity=".08" />
+            </svg>
+            <div class="ta-chart-badge"><span>Indicator preview</span><strong>Signal detected</strong><small>Trend structure • momentum • confirmation</small></div>
+          </div>
+          <div class="ta-panel-footer"><span>Live product preview</span><button type="button" data-scroll-demo>View live demo ↓</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ta-platform-strip">
+      <div class="ta-container ta-strip-inner">
+        <span>Built around the platforms traders already use</span>
+        <div class="ta-platforms"><span>MT4</span><span>MT5</span><span>cTrader</span><span>TradingView</span></div>
+      </div>
+    </section>
+
+    <section class="ta-section" id="live-demo">
+      <div class="ta-container">
+        <div class="ta-section-head ta-split-head">
+          <div><span class="ta-label">Live Demo</span><h2>See the product before you choose it.</h2><p>Select a platform and preview the kind of trading technology Trade Avata provides.</p></div>
+          <a class="ta-text-link" href={`${base}store/`}>View all products →</a>
+        </div>
+        <div class="ta-demo-shell">
+          <div class="ta-demo-tabs" role="tablist" aria-label="Indicator platforms">
+            {demoPlatforms.map((platform, index) => <button type="button" class:list={{active:index === 0}} data-demo-platform={platform} role="tab" aria-selected={index === 0 ? 'true' : 'false'}>{platform}</button>)}
+          </div>
+          <div class="ta-demo-grid">
+            <div class="ta-demo-copy">
+              <span class="ta-mini-label">Featured indicator</span>
+              <h3 id="demo-title">Trade Avata Indicator Preview</h3>
+              <p id="demo-description">A clean preview area for the indicator currently being provided through Trade Avata. The administrator can change the featured indicator, platform, screenshots, demo video and product link without rebuilding the page.</p>
+              <div class="ta-feature-list"><span>Platform-ready presentation</span><span>Live/demo chart area</span><span>Product access CTA</span></div>
+              <div class="ta-actions"><a class="ta-btn ta-btn-primary" href={`${base}store/`}>Explore Indicators</a><a class="ta-btn ta-btn-secondary" href={`${base}contact/`}>Ask About Access</a></div>
+            </div>
+            <div class="ta-demo-chart" aria-label="Indicator demonstration preview">
+              <div class="ta-demo-chart-top"><span id="demo-symbol">XAU/USD</span><strong id="demo-price">2,642.10</strong><em id="demo-change">+1.12%</em><span id="demo-platform">MT4</span></div>
+              <div class="ta-demo-chart-body"><div class="ta-chart-grid"></div><svg viewBox="0 0 820 300" preserveAspectRatio="none" aria-hidden="true"><path d="M0 240 C70 230 90 188 145 206 S225 145 280 175 S350 105 410 136 S490 95 540 116 S615 60 670 83 S745 44 820 57" fill="none" stroke="currentColor" stroke-width="5"/><path d="M0 240 C70 230 90 188 145 206 S225 145 280 175 S350 105 410 136 S490 95 540 116 S615 60 670 83 S745 44 820 57" fill="none" stroke="currentColor" stroke-width="12" opacity=".09"/><circle cx="670" cy="83" r="7" fill="currentColor"/><circle cx="410" cy="136" r="7" fill="currentColor"/></svg><div class="ta-signal-card"><span>Trade Avata signal</span><strong>Strong directional setup</strong><small>Preview presentation — not a trading guarantee.</small></div></div>
+              <div class="ta-demo-controls"><span>Preview mode</span><span>Chart</span><span>Signals</span><span>Details</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ta-section ta-soft-section">
+      <div class="ta-container">
+        <div class="ta-section-head"><span class="ta-label">Four pillars</span><h2>Everything has a place.</h2><p>Trade Avata is not an academy and not an indicator-development company. We provide practical products and technology around the complete trading journey.</p></div>
+        <div class="ta-pillars">
+          <a class="ta-pillar" href={`${base}learn/`}><span class="ta-pillar-number">01</span><div><strong>Learn</strong><p>Courses, lessons, resources and a clear path for developing trading knowledge.</p></div><span>→</span></a>
+          <a class="ta-pillar" href={`${base}store/`}><span class="ta-pillar-number">02</span><div><strong>Trade</strong><p>Indicators, charts, practical tools and trading resources provided through the Trade Avata platform.</p></div><span>→</span></a>
+          <a class="ta-pillar" href={`${base}account/`}><span class="ta-pillar-number">03</span><div><strong>Community</strong><p>Member profiles, progress, notifications, achievements and the foundation for future community features.</p></div><span>→</span></a>
+          <a class="ta-pillar" href={`${base}store/`}><span class="ta-pillar-number">04</span><div><strong>Store</strong><p>Indicators, digital products, courses, subscriptions and other trading resources.</p></div><span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="ta-section" id="products">
+      <div class="ta-container">
+        <div class="ta-section-head ta-split-head"><div><span class="ta-label">Featured products</span><h2>Useful technology, presented simply.</h2><p>Explore what Trade Avata currently provides and see how each product is delivered.</p></div><a class="ta-text-link" href={`${base}store/`}>Browse the store →</a></div>
+        <div class="ta-product-grid">
+          {featuredProducts.map(product => <article class="ta-product-card"><div class="ta-product-visual"><span>{product.type}</span><div class="ta-product-screen"><div class="ta-screen-line one"></div><div class="ta-screen-line two"></div><div class="ta-screen-line three"></div><b>{product.platforms[0]}</b></div></div><div class="ta-product-content"><div class="ta-product-meta"><span>{product.platforms.join(' · ')}</span><span>{product.availability}</span></div><h3>{product.name}</h3><p>{product.short}</p><a class="ta-text-link" href={`${base}store/${product.slug}/`}>View product →</a></div></article>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="ta-section ta-duo-section">
+      <div class="ta-container ta-duo-grid">
+        <div class="ta-duo-card ta-duo-dark"><span class="ta-label">FREE AI ANALYTICS</span><h2>Understand what your trading data is telling you.</h2><p>Connect your account and Trade Avata calculates the evidence first, then AI turns it into a clear analysis. No chatbot. Your data determines your output.</p><a class="ta-btn ta-btn-secondary" href={`${base}analytics/`}>Use AI Analytics Free</a></div>
+        <div class="ta-duo-card"><span class="ta-label">FREE AI JOURNAL</span><h2>Plan. Trade. Review. Learn.</h2><p>Write or speak your trading notes, record execution and let Trade Avata analyze the information you provide. No chatbot. Your input determines your output.</p><a class="ta-btn ta-btn-primary" href={`${base}journal/`}>Use AI Journal Free</a></div>
+      </div>
+    </section>
+
+    <section class="ta-section ta-soft-section">
+      <div class="ta-container">
+        <div class="ta-section-head ta-split-head"><div><span class="ta-label">Learning</span><h2>Learn without making the whole company an academy.</h2><p>Education is one part of Trade Avata, supporting the products and trading journey rather than defining the company.</p></div><a class="ta-text-link" href={`${base}learn/`}>Explore courses →</a></div>
+        <div class="ta-course-grid">{featuredCourses.map(course => <article class="ta-course-card"><div class="ta-course-top"><span>{course.level}</span><small>{course.duration}</small></div><h3>{course.title}</h3><p>{course.description}</p><div class="ta-course-meta"><span>{course.modules} modules</span><span>{course.lessons} lessons</span><span>Video + reading</span></div><a href={`${base}learn/${course.slug}/`}>Course preview →</a></article>)}</div>
+      </div>
+    </section>
+
+    <section class="ta-section ta-faq-section">
+      <div class="ta-container ta-faq-layout">
+        <div><span class="ta-label">FAQ</span><h2>Questions, answered clearly.</h2><p>Simple information for visitors, members and customers.</p><a class="ta-text-link" href={`${base}faq/`}>View all FAQs →</a></div>
+        <div class="ta-faq-list">
+          <details open><summary>What is Trade Avata?</summary><p>Trade Avata is a trading technology and products company providing indicators, tools, applications, education and practical solutions for traders.</p></details>
+          <details><summary>Does Trade Avata develop the indicators it provides?</summary><p>Trade Avata can provide products across specialist platforms and services; the website does not need to position the company as an indicator-development studio.</p></details>
+          <details><summary>Which platforms can products support?</summary><p>Products can be presented for platforms such as MT4, MT5, cTrader and TradingView where the specific product supports them.</p></details>
+          <details><summary>Can I see an indicator before getting access?</summary><p>Yes. The Live Demo area is designed to show the relevant indicator or product preview before the customer chooses an access path.</p></details>
+          <details><summary>Where are course videos hosted?</summary><p>Trade Avata's architecture uses Vimeo for course video delivery while the platform manages course structure, access and progress.</p></details>
+        </div>
+      </div>
+    </section>
+
+    <section class="ta-final-cta">
+      <div class="ta-container ta-final-cta-inner"><div><span class="ta-label">Trade Avata</span><h2>Your Trading Journey Starts Here.</h2><p>Explore the products, tools and learning resources available today.</p></div><div class="ta-actions"><a class="ta-btn ta-btn-primary" href={`${base}learn/`}>Start Learning</a><a class="ta-btn ta-btn-secondary" href={`${base}store/`}>Explore Trade</a></div></div>
+    </section>
+  </div>
+
+
+<style>
+.ta-site{--ta-blue:#1477ff;--ta-blue2:#4aa3ff;--ta-bg:#050b14;--ta-surface:#091321;--ta-surface2:#0d1929;--ta-text:#f7fbff;--ta-muted:#9aaac0;--ta-line:rgba(148,163,184,.17);color:var(--ta-text);background:var(--ta-bg);overflow:hidden}.ta-site:where(*){box-sizing:border-box}.ta-container{width:min(1160px,calc(100% - 36px));margin:auto}.ta-hero{padding:74px 0 34px;position:relative}.ta-hero:before{content:"";position:absolute;width:620px;height:360px;right:-180px;top:-80px;background:radial-gradient(circle,rgba(20,119,255,.2),transparent 68%)}.ta-hero-grid{display:grid;grid-template-columns:.94fr 1.06fr;gap:54px;align-items:center}.ta-kicker,.ta-label{display:inline-flex;align-items:center;gap:8px;color:var(--ta-blue2);font-size:11px;font-weight:850;letter-spacing:.1em;text-transform:uppercase}.ta-kicker{padding:7px 11px;border:1px solid rgba(20,119,255,.28);border-radius:999px;background:rgba(20,119,255,.08)}.ta-status-dot{width:7px;height:7px;border-radius:50%;background:#27d17f;box-shadow:0 0 0 4px rgba(39,209,127,.1)}.ta-hero h1{font-size:clamp(46px,6vw,76px);line-height:1;letter-spacing:-.055em;margin:20px 0 18px;max-width:720px}.ta-hero h1 span{color:var(--ta-blue)}.ta-hero-copy>p{font-size:18px;line-height:1.7;color:var(--ta-muted);max-width:640px;margin:0}.ta-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}.ta-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:43px;padding:0 17px;border-radius:11px;font-size:13px;font-weight:800;transition:.2s}.ta-btn:hover{transform:translateY(-2px)}.ta-btn-primary{background:var(--ta-blue);border:1px solid var(--ta-blue);color:#fff;box-shadow:0 12px 28px rgba(20,119,255,.2)}.ta-btn-secondary{background:var(--ta-surface);border:1px solid var(--ta-line);color:var(--ta-text)}.ta-hero-note{margin-top:22px;font-size:12px;color:var(--ta-muted)}.ta-hero-note span{color:var(--ta-text);font-weight:800}.ta-hero-panel,.ta-demo-shell,.ta-product-card,.ta-course-card,.ta-pillar,.ta-duo-card{border:1px solid var(--ta-line);background:var(--ta-surface);border-radius:18px}.ta-hero-panel{overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.28);transition:.3s}.ta-hero-panel:hover{transform:translateY(-4px);box-shadow:0 30px 90px rgba(20,119,255,.15)}.ta-window-bar{height:48px;display:flex;align-items:center;gap:6px;padding:0 16px;border-bottom:1px solid var(--ta-line);background:var(--ta-surface2)}.ta-window-bar span{width:7px;height:7px;border-radius:50%;background:#718096}.ta-window-bar strong{font-size:11px;margin-left:8px}.ta-window-bar small{margin-left:auto;color:var(--ta-muted);font-size:10px}.ta-market-strip{display:flex;align-items:center;gap:11px;padding:12px 16px;font-size:11px;border-bottom:1px solid var(--ta-line)}.ta-market-strip strong{font-size:15px}.ta-market-strip em{font-style:normal;color:#26c77d;font-weight:800}.ta-market-strip span:last-child{margin-left:auto;color:var(--ta-blue2)}.ta-chart,.ta-demo-chart-body{position:relative;background:#07101d;color:#48a2ff;overflow:hidden}.ta-chart{height:300px}.ta-chart-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:42px 42px}.ta-chart svg{position:absolute;inset:18px 15px;width:calc(100% - 30px);height:calc(100% - 36px)}.ta-chart-badge,.ta-signal-card{position:absolute;left:17px;top:17px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:11px;background:rgba(4,10,18,.72);color:#fff}.ta-chart-badge span,.ta-signal-card span{display:block;font-size:9px;color:#8fa4be;text-transform:uppercase}.ta-chart-badge strong,.ta-signal-card strong{display:block;font-size:12px;margin-top:3px}.ta-chart-badge small,.ta-signal-card small{display:block;color:#9fb1c7;font-size:9px}.ta-panel-footer{display:flex;justify-content:space-between;padding:11px 15px;font-size:10px;color:var(--ta-muted)}.ta-panel-footer button{border:0;background:none;color:var(--ta-blue2);font-weight:800;cursor:pointer}.ta-platform-strip{border-block:1px solid var(--ta-line);background:var(--ta-surface)}.ta-strip-inner{min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:22px}.ta-strip-inner>span{font-size:11px;color:var(--ta-muted)}.ta-platforms{display:flex;gap:8px;flex-wrap:wrap}.ta-platforms span{padding:7px 11px;border:1px solid var(--ta-line);border-radius:9px;background:var(--ta-surface2);font-size:11px;font-weight:800}.ta-section{padding:76px 0}.ta-soft-section{background:var(--ta-surface2);border-block:1px solid var(--ta-line)}.ta-section-head{margin-bottom:28px}.ta-section-head h2,.ta-final-cta h2{font-size:clamp(30px,4vw,48px);line-height:1.06;letter-spacing:-.04em;margin:9px 0}.ta-section-head p,.ta-final-cta p{max-width:700px;color:var(--ta-muted);font-size:15px;margin:0}.ta-split-head{display:flex;align-items:end;justify-content:space-between;gap:24px}.ta-text-link{color:var(--ta-blue2);font-size:12px;font-weight:850;white-space:nowrap}.ta-demo-shell{overflow:hidden;box-shadow:0 24px 70px rgba(0,0,0,.2)}.ta-demo-tabs{display:flex;gap:5px;padding:8px;border-bottom:1px solid var(--ta-line);background:var(--ta-surface2);overflow:auto}.ta-demo-tabs button{border:0;background:transparent;color:var(--ta-muted);padding:9px 13px;border-radius:8px;font-size:11px;font-weight:850;cursor:pointer;white-space:nowrap}.ta-demo-tabs button.active{background:var(--ta-blue);color:#fff}.ta-demo-grid{display:grid;grid-template-columns:.76fr 1.24fr;gap:24px;padding:25px}.ta-demo-copy h3{font-size:27px;line-height:1.12;margin:8px 0}.ta-demo-copy>p{font-size:14px;line-height:1.7;color:var(--ta-muted);margin:0}.ta-feature-list{display:grid;gap:7px;margin:18px 0}.ta-feature-list span{font-size:12px;padding-left:19px;color:var(--ta-muted)}.ta-feature-list span:before{content:"✓";margin-left:-19px;margin-right:9px;color:var(--ta-blue2);font-weight:900}.ta-demo-chart{border:1px solid rgba(255,255,255,.1);border-radius:15px;background:#07101d;overflow:hidden;color:#48a2ff}.ta-demo-chart-top{display:flex;align-items:center;gap:10px;padding:11px 13px;border-bottom:1px solid rgba(255,255,255,.08);font-size:10px;color:#b4c4d8}.ta-demo-chart-top strong{font-size:14px;color:#fff}.ta-demo-chart-top em{font-style:normal;color:#26c77d;font-weight:800}.ta-demo-chart-top span:last-child{margin-left:auto;color:#6eb4ff}.ta-demo-chart-body{height:310px}.ta-demo-chart-body svg{position:absolute;inset:20px;width:calc(100% - 40px);height:calc(100% - 40px)}.ta-signal-card{top:auto;bottom:15px}.ta-demo-controls{display:flex;gap:18px;padding:10px 13px;color:#778ba4;font-size:9px;border-top:1px solid rgba(255,255,255,.08)}.ta-pillars{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.ta-pillar{display:grid;grid-template-columns:42px 1fr auto;align-items:start;gap:13px;padding:18px;transition:.2s}.ta-pillar:hover,.ta-product-card:hover,.ta-course-card:hover{transform:translateY(-3px);border-color:rgba(20,119,255,.42)}.ta-pillar-number{font-size:10px;font-weight:900;color:var(--ta-blue2)}.ta-pillar strong{font-size:17px}.ta-pillar p{margin:4px 0 0;color:var(--ta-muted);font-size:12px;line-height:1.55}.ta-pillar>span:last-child{color:var(--ta-blue2)}.ta-product-grid,.ta-course-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.ta-product-card,.ta-course-card{overflow:hidden;transition:.2s}.ta-product-visual{height:175px;background:#081321;position:relative;padding:14px;color:#56aaff}.ta-product-visual>span{padding:5px 8px;border-radius:7px;background:rgba(8,16,28,.75);font-size:9px;text-transform:uppercase}.ta-product-screen{position:absolute;left:14%;right:8%;top:35px;bottom:14px;border:1px solid rgba(86,170,255,.2);border-radius:9px;background:linear-gradient(145deg,#0c1c30,#07101d);padding:13px}.ta-product-screen:after{content:"";position:absolute;left:9%;right:9%;top:48%;height:2px;background:currentColor;transform:rotate(-8deg)}.ta-product-screen b{position:absolute;right:10px;bottom:8px;font-size:8px;color:#d7e9ff}.ta-product-content,.ta-course-card{padding:16px}.ta-product-meta,.ta-course-top,.ta-course-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--ta-muted);font-size:10px}.ta-product-content h3,.ta-course-card h3{font-size:18px;margin:8px 0 5px}.ta-product-content p,.ta-course-card p{font-size:12px;line-height:1.6;color:var(--ta-muted);margin:0 0 12px}.ta-duo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.ta-duo-card{padding:26px}.ta-duo-dark{background:#07111f;color:#fff;border-color:rgba(77,155,255,.22)}.ta-duo-card h2{font-size:26px;line-height:1.1;letter-spacing:-.03em;margin:9px 0}.ta-duo-card p{color:var(--ta-muted);font-size:13px}.ta-course-top{justify-content:space-between}.ta-course-top span{color:var(--ta-blue2);font-weight:850}.ta-course-meta{justify-content:flex-start;flex-wrap:wrap;margin-top:13px}.ta-course-card>a{color:var(--ta-blue2);font-size:11px;font-weight:850}.ta-faq-layout{display:grid;grid-template-columns:.7fr 1.3fr;gap:50px}.ta-faq-layout>div:first-child h2{font-size:clamp(30px,4vw,44px);line-height:1.05;letter-spacing:-.04em;margin:10px 0}.ta-faq-layout>div:first-child p{font-size:14px;color:var(--ta-muted)}.ta-faq-list{display:grid;gap:7px}.ta-faq-list details{border-bottom:1px solid var(--ta-line)}.ta-faq-list summary{list-style:none;cursor:pointer;padding:15px 4px;font-size:13px;font-weight:800;display:flex;justify-content:space-between}.ta-faq-list summary::-webkit-details-marker{display:none}.ta-faq-list summary:after{content:"+";color:var(--ta-blue2);font-size:17px}.ta-faq-list details[open] summary:after{content:"−"}.ta-faq-list p{color:var(--ta-muted);font-size:12px;line-height:1.7;padding:0 4px 14px;margin:0}.ta-final-cta{padding:58px 0;background:linear-gradient(110deg,#07111f,#0b2d58 55%,#0a1727);color:#fff}.ta-final-cta-inner{display:flex;align-items:center;justify-content:space-between;gap:30px}.ta-final-cta p{color:#afc0d5}.ta-final-cta .ta-label{color:#71b7ff}.ta-final-cta .ta-btn-secondary{background:transparent;border-color:rgba(255,255,255,.2);color:#fff}@media(max-width:900px){.ta-hero-grid,.ta-demo-grid,.ta-faq-layout,.ta-duo-grid{grid-template-columns:1fr}.ta-product-grid,.ta-course-grid{grid-template-columns:repeat(2,1fr)}.ta-final-cta-inner{display:block}}@media(max-width:620px){.ta-container{width:min(100% - 24px,1160px)}.ta-hero{padding:38px 0 24px}.ta-hero h1{font-size:45px}.ta-hero-copy>p{font-size:16px}.ta-chart{height:245px}.ta-strip-inner{display:block;padding:16px 0}.ta-platforms{margin-top:9px}.ta-section{padding:56px 0}.ta-split-head{display:block}.ta-split-head .ta-text-link{display:inline-block;margin-top:12px}.ta-pillars,.ta-product-grid,.ta-course-grid{grid-template-columns:1fr}.ta-demo-grid{padding:15px}.ta-demo-chart-body{height:250px}.ta-duo-card{padding:21px}.ta-duo-card h2{font-size:23px}.ta-final-cta{padding:45px 0}}
+</style>
+
+  <script is:inline>
+    const demoData = {
+      MT4: { title: 'Trade Avata MT4 Indicator Preview', platform: 'MT4', symbol: 'XAU/USD', price: '2,642.10', change: '+1.12%', description: 'A platform-specific preview area for the indicator currently being provided through Trade Avata.' },
+      MT5: { title: 'Trade Avata MT5 Indicator Preview', platform: 'MT5', symbol: 'XAU/USD', price: '2,642.10', change: '+1.12%', description: 'A platform-specific preview area for the indicator currently being provided through Trade Avata.' },
+      cTrader: { title: 'Trade Avata cTrader Indicator Preview', platform: 'cTrader', symbol: 'XAU/USD', price: '2,642.10', change: '+1.12%', description: 'A platform-specific preview area for the indicator currently being provided through Trade Avata.' },
+      TradingView: { title: 'Trade Avata TradingView Indicator Preview', platform: 'TradingView', symbol: 'XAU/USD', price: '2,642.10', change: '+1.12%', description: 'A platform-specific preview area for the indicator currently being provided through Trade Avata.' }
+    };
+    const demoTitle = document.querySelector('#demo-title');
+    const demoDescription = document.querySelector('#demo-description');
+    const demoPlatform = document.querySelector('#demo-platform');
+    const demoSymbol = document.querySelector('#demo-symbol');
+    const demoPrice = document.querySelector('#demo-price');
+    const demoChange = document.querySelector('#demo-change');
+    document.querySelectorAll('[data-demo-platform]').forEach(button => button.addEventListener('click', () => {
+      document.querySelectorAll('[data-demo-platform]').forEach(item => { item.classList.remove('active'); item.setAttribute('aria-selected','false'); });
+      button.classList.add('active'); button.setAttribute('aria-selected','true');
+      const data = demoData[button.dataset.demoPlatform];
+      if (!data) return;
+      demoTitle.textContent = data.title; demoDescription.textContent = data.description; demoPlatform.textContent = data.platform; demoSymbol.textContent = data.symbol; demoPrice.textContent = data.price; demoChange.textContent = data.change;
+    }));
+    document.querySelector('[data-scroll-demo]')?.addEventListener('click', () => document.querySelector('#live-demo')?.scrollIntoView({behavior:'smooth', block:'start'}));
+  </script>
+</BaseLayout>
